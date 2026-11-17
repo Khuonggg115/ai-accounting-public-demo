@@ -484,9 +484,6 @@ page = st.sidebar.radio(
     ["Tổng quan", "Quản lý hóa đơn", "OCR hóa đơn", "Quản lý thu chi", "Đối chiếu dữ liệu", "AI hỗ trợ hạch toán"],
 )
 st.sidebar.divider()
-st.sidebar.markdown("**Engine:** Gemini API")
-st.sidebar.markdown(f"**Model:** `{get_secret('GEMINI_MODEL', DEFAULT_MODEL) or DEFAULT_MODEL}`")
-st.sidebar.caption("Không có PostgreSQL/PaddleOCR trên bản Community Cloud.")
 st.sidebar.download_button(
     "Tải dữ liệu phiên này (JSON)",
     data=create_download_json(),
@@ -554,9 +551,9 @@ elif page == "Quản lý hóa đơn":
 # ============================================================
 
 elif page == "OCR hóa đơn":
-    st.subheader("Tải tài liệu và trích xuất bằng Gemini")
+    st.subheader("Tải tài liệu và trích xuất")
     st.markdown(
-        "Gemini đọc bố cục tài liệu trực tiếp: bảng 4, 6, 9 cột, hóa đơn dịch vụ, "
+        "Model đọc bố cục tài liệu trực tiếp: bảng 4, 6, 9 cột, hóa đơn dịch vụ, "
         "hóa đơn bán hàng, phiếu thu/chi hoặc chứng từ khác. Các trường không rõ được để trống để người dùng kiểm tra."
     )
     has_key = bool(get_secret("GEMINI_API_KEY"))
@@ -564,7 +561,7 @@ elif page == "OCR hóa đơn":
         st.error("Chưa cấu hình GEMINI_API_KEY trong Streamlit Cloud → App settings → Secrets.")
 
     consent = st.checkbox(
-        "Tôi xác nhận đây là chứng từ giả lập và đồng ý gửi ảnh/trang tài liệu tới Google Gemini API để nhận diện.",
+        "Tôi xác nhận đây là chứng từ giả lập và đồng ý gửi ảnh/trang tài liệu để nhận diện.",
         value=False,
         key="gemini_consent",
     )
@@ -582,7 +579,7 @@ elif page == "OCR hóa đơn":
     col_run, col_reset = st.columns([3, 1])
     with col_run:
         run_ocr = st.button(
-            "✨ Phân tích bằng Gemini",
+            "✨ Phân tích",
             type="primary",
             disabled=(uploaded is None or not has_key or not consent or uploaded.size > MAX_FILE_BYTES),
             use_container_width=True,
@@ -871,7 +868,4 @@ elif page == "AI hỗ trợ hạch toán":
 # ============================================================
 
 st.divider()
-st.caption(
-    "AI Accounting Public Demo · Gemini API · Dữ liệu chỉ tồn tại trong phiên hiện tại và có thể bị xóa khi tải lại/khởi động lại ứng dụng. "
-    "Không dùng cho chứng từ thật hoặc nghiệp vụ kế toán chính thức."
-)
+
