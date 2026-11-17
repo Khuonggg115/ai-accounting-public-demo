@@ -1,0 +1,14 @@
+AI ACCOUNTING - STREAMLIT COMMUNITY CLOUD CHECKLIST
+
+[ ] Create a dedicated public-demo GitHub repository.
+[ ] Unzip the cloud package into its own folder.
+[ ] Check git status; no .env, real secrets, uploads, .venv, or DB dump.
+[ ] Create Gemini API key at https://aistudio.google.com/api-keys
+[ ] Push code to GitHub.
+[ ] Create Streamlit Community Cloud app; repository/branch main/entrypoint app.py.
+[ ] Add GEMINI_API_KEY and GEMINI_MODEL in app Secrets.
+[ ] Deploy successfully.
+[ ] Set Sharing -> This app is public and searchable.
+[ ] Test in incognito using a synthetic invoice only.
+[ ] Configure API quota/monitoring; never upload confidential documents.
+[ ] Share the streamlit.app URL.
