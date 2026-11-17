@@ -22,7 +22,7 @@ from PIL import Image
 # ============================================================
 
 APP_TITLE = "AI Accounting | Public Demo"
-DEFAULT_MODEL = "gemini-3.8-flash"
+DEFAULT_MODEL = "gemini-3.5-flash-lite"
 MAX_FILE_BYTES = 5 * 1024 * 1024
 MAX_PAGES = 3
 MAX_SESSION_CALLS = 3
